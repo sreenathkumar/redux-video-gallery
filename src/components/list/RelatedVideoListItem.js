@@ -1,15 +1,14 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-import { filterByauthor } from "../../features/relatedVideos/relatedVideosSlice";
+import { filterByAuthor } from "../../features/relatedVideos/relatedVideosSlice";
 
 export default function RelatedVideoListItem({ video }) {
   const dispatch = useDispatch();
-
+  const ID = useParams().videoId;
   const { id, thumbnail, title, duration, author, views, date } = video || {};
   const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(filterByauthor(author));
+    dispatch(filterByAuthor(author));
   };
   return (
     <div className="w-full flex flex-row gap-2 mb-4">
@@ -26,15 +25,14 @@ export default function RelatedVideoListItem({ video }) {
         <Link to={`/videos/${id}`}>
           <p className="text-slate-900 text-sm font-semibold">{title}</p>
         </Link>
-        <Link
-          className="text-gray-400 text-xs mt-2 hover:text-gray-600"
-          to={`/videos/${id}`}
+        <div
+          className="text-gray-400 text-xs mt-2 hover:text-gray-600 cursor-pointer"
           onClick={(e) => {
             handleClick(e);
           }}
         >
           {author}
-        </Link>
+        </div>
         <p className="text-gray-400 text-xs mt-1">
           {views} views . {date}
         </p>

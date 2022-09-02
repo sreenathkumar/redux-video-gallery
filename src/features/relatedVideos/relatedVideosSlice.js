@@ -25,7 +25,7 @@ const relatedVideosSlice = createSlice({
   name: "relatedVideos",
   initialState,
   reducers: {
-    filterByauthor: (state, action) => {
+    filterByAuthor: (state, action) => {
       state.filterByAuthor = action.payload;
     },
   },
@@ -49,4 +49,4 @@ const relatedVideosSlice = createSlice({
 });
 
 export default relatedVideosSlice.reducer;
-export const { filterByauthor } = relatedVideosSlice.actions;
+export const { filterByAuthor } = relatedVideosSlice.actions;

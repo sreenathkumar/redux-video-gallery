@@ -6,14 +6,14 @@ import RelatedVideoListItem from "./RelatedVideoListItem";
 
 export default function RelatedVideoList({ currentVideoId, tags }) {
   const dispatch = useDispatch();
-  const { relatedVideos, isLoading, isError, error, filterByauthor } =
+  const { relatedVideos, isLoading, isError, error, filterByAuthor } =
     useSelector((state) => state.relatedVideos);
 
   useEffect(() => {
     dispatch(
-      fetchRelatedVideos({ tags, id: currentVideoId, author: filterByauthor })
+      fetchRelatedVideos({ tags, id: currentVideoId, author: filterByAuthor })
     );
-  }, [dispatch, tags, currentVideoId, filterByauthor]);
+  }, [dispatch, tags, currentVideoId, filterByAuthor]);
 
   // decide what to render
   let content = null;
