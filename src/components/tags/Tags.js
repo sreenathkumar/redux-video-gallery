@@ -5,7 +5,7 @@ import { resetPage } from "../../features/pagination/paginationSlice";
 import { fetchTags } from "../../features/tags/tagsSlice";
 import Tag from "./Tag";
 
-export default function Tags() {
+export default function Tags({ setSearchInput }) {
   const { tags } = useSelector((state) => state.tags);
   const dispatch = useDispatch();
 
@@ -27,6 +27,7 @@ export default function Tags() {
           onClick={() => {
             dispatch(reset());
             dispatch(resetPage());
+            setSearchInput("");
           }}
         >
           Reset

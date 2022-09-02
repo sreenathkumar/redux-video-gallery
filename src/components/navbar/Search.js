@@ -1,28 +1,24 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useMatch, useNavigate } from "react-router-dom";
 import { searched } from "../../features/filter/filterSlice";
 
-export default function Search() {
+export default function Search({ searchInput, setSearchInput }) {
   const dispatch = useDispatch();
-  const { search } = useSelector((state) => state.filter);
-  console.log(search);
-
-  const [input, setInput] = useState("");
 
   const match = useMatch("/");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(searched(input));
+    dispatch(searched(searchInput));
     // if user is not in home page, redirect to home page
     if (!match) {
       navigate("/");
     }
-    setInput("");
   };
-
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -31,8 +27,8 @@ export default function Search() {
         name="search"
         id="search-input"
         placeholder="Search"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        value={searchInput}
+        onChange={handleChange}
       />
     </form>
   );
