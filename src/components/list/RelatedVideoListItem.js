@@ -5,7 +5,6 @@ import { filterByAuthor } from "../../features/relatedVideos/relatedVideosSlice"
 
 export default function RelatedVideoListItem({ video }) {
   const dispatch = useDispatch();
-  const ID = useParams().videoId;
   const { id, thumbnail, title, duration, author, views, date } = video || {};
   const handleClick = (e) => {
     dispatch(filterByAuthor(author));
