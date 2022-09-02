@@ -8,8 +8,8 @@ export const getRelatedVideos = async ({ tags, id, author }) => {
   let queryString =
     tags?.length > 0 && author !== ""
       ? tags.map((tag) => `tags_like=${tag}`).join("&") +
-        `&id_ne=${id}&_author=${author}&_limit=${limit}`
-      : `id_ne=${id}&_author=${author}&_limit=${limit}`;
+        `&id_ne=${id}&author=${author}&_limit=${limit}`
+      : `id_ne=${id}&_limit=${limit}`;
 
   const response = await axios.get(`/videos?${queryString}`);
 

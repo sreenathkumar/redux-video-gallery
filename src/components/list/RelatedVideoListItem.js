@@ -8,6 +8,7 @@ export default function RelatedVideoListItem({ video }) {
 
   const { id, thumbnail, title, duration, author, views, date } = video || {};
   const handleClick = (e) => {
+    e.preventDefault();
     dispatch(filterByauthor(author));
   };
   return (

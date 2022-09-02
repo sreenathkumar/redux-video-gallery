@@ -15,7 +15,7 @@ export const fetchRelatedVideos = createAsyncThunk(
   "relatedVideos/fetchRelatedVideos",
   async ({ tags, id }, { getState }) => {
     const author = getState().relatedVideos.filterByAuthor;
-
+    console.log(id);
     const relatedVideos = await getRelatedVideos({ tags, id, author });
     return relatedVideos;
   }
