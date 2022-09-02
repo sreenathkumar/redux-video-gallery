@@ -6,11 +6,14 @@ import axios from "../../utils/axios";
 export const getRelatedVideos = async ({ tags, id, author }) => {
   const limit = 5;
   let queryString =
-    tags?.length > 0 && author !== ""
+    tags?.length > 0
       ? tags.map((tag) => `tags_like=${tag}`).join("&") +
-        `&id_ne=${id}&author=${author}&_limit=${limit}`
+        `&id_ne=${id}&_limit=${limit}`
       : `id_ne=${id}&_limit=${limit}`;
 
+  if (author !== "") {
+    queryString += `&author=${author}`;
+  }
   const response = await axios.get(`/videos?${queryString}`);
 
   return response.data;
